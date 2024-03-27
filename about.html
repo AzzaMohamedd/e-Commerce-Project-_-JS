@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/toastr.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>About Us - Commercy</title>
+</head>
+<body id="about-body">
+    <!-- start navbar -->
+    <section id="navSec">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+              <img id="logo" src="./images/MyLogo.png" alt="">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./contactus.html">Contact US</a>
+                  </li>
+                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item categoriesLink">All</a></li>
+                          <li><a class="dropdown-item categoriesLink">Electronics</a></li>
+                          <li><a class="dropdown-item categoriesLink">Wearables</a></li>
+                          <li><a class="dropdown-item categoriesLink">Gaming</a></li>
+                          <li><a class="dropdown-item categoriesLink">Appliances</a></li>
+                          <li><a class="dropdown-item categoriesLink">Audio</a></li>
+                          <li><a class="dropdown-item categoriesLink">Security</a></li>
+                          <li><a class="dropdown-item categoriesLink">Computers</a></li>
+                      <!-- <li><hr class="dropdown-divider"></li> -->
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      SignIn / Register
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" onclick="clearInputs()" data-bs-toggle="modal" data-bs-target="#signinPopup">SignIn</a></li>
+                      <li><a class="dropdown-item" onclick="clearInputs()" data-bs-toggle="modal" data-bs-target="#registerPopup">Register</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="" onclick="openCart()" data-bs-toggle="modal" data-bs-target="#cartPopup" title="Cart">
+                        <i class="fa-regular fa-cart-shopping"></i>
+                        <span class='badge badge-warning' id='lblCartCount'> 0 </span>
+                    </a>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" autocomplete="off" placeholder="Search" aria-label="Search" id="inputsearch">
+                  <button class="btn btn-outline-warning searchbtn" type="submit" onclick="search()">Search</button>
+                  <div class="container" id="searchresults">
+                    
+                  </div>
+                </form>
+              </div>
+            </div>
+        </nav>
+    </section>
+    <!-- end navbar -->
+
+
+    <!-- start search results popup -->
+    <div class="modal fade" id="searchPopup" tabindex="-1" aria-labelledby="searchLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="searchLabel">Search Result</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="searchdata">
+            <div class="searchresult_body modal-body">
+              <div class="card-body">
+                <div class="fromSearch row row-cols-1 row-cols-md-2 g-4">
+    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end search results popup -->
+
+
+    <!-- start signin / register popup -->
+      <!-- start signIn -->
+      <div class="modal fade" id="signinPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <span id="blackscreensignin">
+          <span class="loader"></span>
+        </span>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">SIGN IN</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="signform">
+                <div class="mb-3">
+                  <label for="Inputsigninemail" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="Inputsigninemail" name="signinemail" aria-describedby="emailHelp">
+                  <span id="spansigninEmail">Email is Required</span>
+                  <span id="spanValidsigninEmail">Email isn't valid, it must be like(***@**.com)</span>
+                  <span id="spansigninexistEmail">This Email isn't Exist</span>
+                </div>
+                <div class="mb-3">
+                  <label for="Inputsigninpassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="Inputsigninpassword" name="signinpassword">
+                  <span id="spansigninPass">Password is Required</span>
+                  <span id="spansigninwrongPass">Password is wrong</span>  <!--------------------------------------------------------------------------------->
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" form="signform" onclick="clearInputs()" class="btn btn-outline-secondary">Clear</button>
+              <button type="submit" form="signform" class="btn btn-warning" id="btnSignin">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end signIn -->
+      <!-- start register -->
+      <div class="modal fade" id="registerPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <span id="blackscreenregister">
+          <span class="loader"></span>
+        </span>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">REGISTER</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="registerform">
+                <div class="mb-3">
+                  <label for="InputregisterFullName" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="InputregisterFullName" name="registerfullname">
+                  <span id="spanregistername">Full Name is Required</span>
+                </div>
+                <div class="mb-3">
+                  <label for="InputregisterEmail" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="InputregisterEmail" aria-describedby="emailHelp" name="registeremail">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  <span id="spanregisteremail">Email is Required</span>
+                  <span id="spanValidregisterEmail">Email isn't valid, it must be like(***@**.com)</span>
+                  <span id="spanregisterexistEmail">This Email is already Exist</span>
+                </div>
+                <div class="mb-3">
+                  <label for="InputregisterPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="InputregisterPassword" name="registerpassword">
+                  <span id="spanregisterreqPass">Password is Required</span>
+                  <span id="spanShortregisterPass">Password must be 8 chars at least</span>
+                </div>
+                <div class="mb-3">
+                  <label for="InputConfirmPassword" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control" id="InputConfirmPassword" name="registerconfirmpassword">
+                  <span id="spanregisterconfPass">Confirm Password is Required</span>
+                  <span id="spanregistermatchPass">Confirm Password doesn't match to Password</span>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                  <label class="form-check-label" for="exampleCheck2">Check me out</label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" form="registerform" onclick="clearInputs()" class="btn btn-outline-secondary">Clear</button>
+              <button type="submit" form="registerform" class="btn btn-warning" id="btnRegister">Register</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end register -->
+      <!-- end signin / register popup -->
+
+
+
+      <!-- start cart popup -->
+      <div class="modal fade" id="cartPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Your Cart</h1>
+              <button type="button" class="btn-close close_home" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="cartdata">
+              <div class="cart_body modal-body">
+              
+
+              </div>
+              <div class="modal-footer">
+                <span id="price"><span id="sum_price">0</span><span>$</span></span>
+                <button type="submit" class="btn btn-warning" id="checkout">CHECKOUT</button>
+              </div>
+            </div>
+            <div id="nodata">
+              <div class="modal-body">
+                <div class="modal-body">
+                  <img class="empty_cart" src="./images/empty_cart3_1.png" alt="">
+                  <h1>Your Cart is Empty</h1>
+                  <p>go to categories to pick some products</p>
+                  <a type="submit" href="index.html?#categoriesSec" class="btn btn-warning">Products</a>
+                </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end cart popup -->
+
+
+
+    <main id="about-main">
+        <!-- start up icon -->
+        <div id="upicon">
+          <a><i class="fa-solid fa-angles-up"></i></a>
+        </div>
+        <!-- end up icon -->
+       
+        <h2>Who We Are</h2>
+        <p>Welcome to Commercy Store! We are passionate about providing high-quality products and excellent customer service to our valued customers.</p>
+
+        <h2>Our Mission</h2>
+        <p>At Commercy Store, our mission is to make online shopping easy, convenient, and enjoyable for everyone. We strive to offer a diverse range of products to meet the needs and preferences of our customers.</p>
+
+        <h2>Our Team</h2>
+        <p>We have a dedicated team of professionals committed to ensuring a seamless shopping experience for you. From product selection to order fulfillment, our team works tirelessly to exceed your expectations.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions, concerns, or feedback, please feel free to reach out to us. We value your input and are here to assist you in any way we can.</p>
+
+        <p>Email: azzagamel11@gmail.com</p>
+
+        <h2>Location</h2>
+        <p>Commercy Store<br>
+        Menofia, Shebin-alkom<br>
+        Egypt</p>
+
+        <div id="divlogo">
+            <img id="logo2" src="./images/MyLogo.png" alt="">
+        </div>
+    </main>
+
+
+    <!-- start footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#categoriesSec">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contactus.html">Contact</a>
+        </div>
+  
+        <div class="social-icons">
+            <a href="https://www.facebook.com/azza.gamel.3/" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.twitter.com/AzzaMohamedd_/" target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+            <a href="https://www.instagram.com/oo_azza_/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://wa.me/201065135701" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <!-- Add more social media icons as needed -->
+        </div>
+  
+        <p>&copy; 2024 Commercy Store By Azza. All rights reserved.</p>
+    </footer>
+      <!-- end footer -->
+  
+  
+      <script src="./js/all.js"></script>
+      <script src="./js/bootstrap.bundle.js"></script>
+      <script src="./js/jquery.js"></script>   
+      <script src="./js/toastr.js"></script>
+      <script src="./js/sweetalert.js"></script>
+      <script src="./js/main.js"></script>
+</body>
+</html>

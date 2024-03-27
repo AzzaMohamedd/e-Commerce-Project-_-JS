@@ -69,7 +69,7 @@ function search(element_id){
         let searchval = document.getElementById("inputsearch").value;
         
         //open all products with this name -> (from displayProducts function in home.js)
-        window.location.href = "../html/search.html?searchval="+searchval;
+        window.location.href = "../search.html?searchval="+searchval;
     }
     
 }
@@ -108,7 +108,7 @@ for (var linktag of catsLinks) {
             document.getElementsByClassName("navbar-toggler")[0].click();
         }
         setTimeout(function(){
-            window.location.href=`/html/home.html#${e.target.textContent}`
+            window.location.href=`/index.html#${e.target.textContent}`
         },500)
         if(linktag.textContent != "All"){
             document.getElementById(e.target.textContent).click();
@@ -374,7 +374,7 @@ document.getElementById("btnSignin").addEventListener("click",function(e){
         document.getElementById("blackscreensignin").style.display="flex"
         setTimeout(function(){
             document.getElementById("blackscreensignin").style.display="none"
-            window.location.href = "../html/home.html";  // location.reload()
+            window.location.href = "../index.html";  // location.reload()
         },1500)
     }
 })
@@ -431,7 +431,7 @@ document.getElementById("btnRegister").addEventListener("click",function(e){
         document.getElementById("blackscreenregister").style.display="flex"
         setTimeout(function(){
             document.getElementById("blackscreenregister").style.display="none"
-            window.location.href = "../html/home.html";
+            window.location.href = "../index.html";
         },1500)
     }
 
